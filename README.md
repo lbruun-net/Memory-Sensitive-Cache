@@ -13,6 +13,7 @@ Unused memory is wasted memory. You might as well use it.
 - Fully concurrent
 - Evicts entries when the system is under memory pressure (see [Eviction](#eviction) below)
 - Optionally retains hard references to the most recently used N entries (see [Hard references](#hard-references) below)
+- Provides atomic actions, e.g. `computeIfAbsent()`, `putIfAbsent()`, etc.
 
 ### Eviction when under memory pressure
 
