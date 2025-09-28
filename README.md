@@ -29,7 +29,8 @@ Also, note that because garbage collection happens
 sporadically and in "chunks" there is no guarantee that only a minimal number of soft references
 will be collected in each cycle. That is to say that the garbage collector may collect more than
 is truly "needed" even if most garbage collectors attempt to shorten the collection time by not
-necessarily collecting all what potentially _could_ be collected.
+necessarily collecting all what potentially _could_ be collected. Also see the JVM's [`-XX:SoftRefLRUPolicyMSPerMB`
+option](https://docs.oracle.com/en/java/javase/24/docs/specs/man/java.html#advanced-garbage-collection-options-for-java) which can be used to tune the garbage collector's behavior with respect to soft references.
 
 The JVM guarantees that an `OutOfMemoryError` will never be thrown unless all SoftReferences have been
 collected first. 
@@ -59,6 +60,10 @@ at least _biased_ towards first-in-first-out.
 This type of cache is by no means suitable for any use case. The many standard cache implementations in the 
 Java ecosystem (e.g. Caffeine, Ehcache, etc.) are more suitable for most use cases.
 
+Before using this cache, make sure you understand the implications of using `SoftReference` and
+how the JVM's garbage collector treats these. You may end up in a situation where you will want to
+tune the `-XX:SoftRefLRUPolicyMSPerMB` JVM option to adjust how eagerly the garbage collector
+collects soft references.
 
 ### Requirements
 
