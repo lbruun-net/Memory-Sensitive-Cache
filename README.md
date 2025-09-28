@@ -87,7 +87,7 @@ import net.lbruun.cache.MemorySensitiveCache;
 public class MyConfig {
 
     @Bean
-    public MemorySensitiveCacheCache <Integer, String> cacheOfAllGoodThings() {
+    public MemorySensitiveCache<Integer, String> cacheOfAllGoodThings() {
         // Create a cache which retains hard references to the 100 most recently used entries
         return new MemoryPressureCache<>(Integer.class, 100);
     }
